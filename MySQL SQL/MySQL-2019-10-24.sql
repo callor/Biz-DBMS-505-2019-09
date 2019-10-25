@@ -98,5 +98,68 @@ WHERE sb_code = 'B0100' ;
 -- 삭제		있으면			>>		삭제불가		
 -- 삭제,수정 자유롭다		<<		있더라도
 
+-- 만약 subject테이블에 데이터를 추가하면서
+-- sb_code 값을 잘못 지정했다.
+INSERT INTO tbl_subject(sb_code, sb_name)
+VALUES('B1000','미술');
+
+-- subject테이블에만 데이터가 등록된 상태에서는
+-- 자유롭게  UPDATE, DELETE 가 수행된다.
+UPDATE tbl_subject
+SET sb_code = 'B2000'
+WHERE sb_code = 'B1000' ;
+
+-- subject코드를 확인하고 해당하는 과목코드를 사용하여
+-- score를 추가했다
+INSERT INTO tbl_score(s_std, s_subject, s_score)
+VALUES('S0020','B2000',90) ;
+
+-- 이미 B2000 코드로 score가 등록된 상태이므로
+-- subject에서는 B2000코드의 레코드의 sb_code를 변경하거나
+-- 해당 레코드를 삭제할수 없다.
+UPDATE tbl_subject
+SET sb_code = 'B1000'
+WHERE sb_code = 'B2000';
+
+-- 1. 상황
+-- 만약 subject table의 sb_code값을 변경하는 것을 허용하겠다
+-- subject의 sb_code를 변경하면 서로 연결된 table의 
+-- 해당 칼럼(s_subject)을 모두 자동으로 UPDATE를 수행하라
+
+-- FK 삭제
+ALTER TABLE tbl_score2
+DROP FOREIGN KEY FK_01 ;
+
+-- subject 칼럼의 코드를 UPDATE하면 연관된 
+-- 모든 table의 값을 같이 자동으로 UPDATE 하라
+ALTER TABLE tbl_score2
+ADD CONSTRAINT FK_01
+FOREIGN KEY (s_subject)
+REFERENCES tbl_subject(sb_code)
+ON UPDATE CASCADE 
+ON DELETE CASCADE;
+-- ON UPDATE CASCADE : 1의 테이블의 PK를 변경하면
+-- N의 테이블의 연관된 칼럼 데이터를 자동으로 모두 변경
+-- ON DELETE CASCADE : 1의 테이블의 레코드를 삭제하면
+-- N의 테이블의 '연관된 모든 레코드'를 삭제하라
+
+INSERT INTO tbl_score2(s_std, s_subject, s_score)
+VALUES('S0001','B0001',80) ;
+SELECT * FROM tbl_score2 
+WHERE s_subject = 'B0001' ;
+
+UPDATE tbl_subject
+SET sb_code = 'B2000'
+WHERE sb_code = 'B0001';
+
+SELECT * FROM tbl_score2 ;
+
+-- FK 설정에서
+-- ON UPDATE CASCADE와 ON DELETE CASCADE는 
+-- DB 설계당시에 어떻게 정책을 수립하느냐에 따라
+-- 결정해서 사용하면된다.
+
+
+
 
 
