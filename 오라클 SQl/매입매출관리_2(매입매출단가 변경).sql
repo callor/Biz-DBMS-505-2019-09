@@ -35,6 +35,7 @@ tbl_product
 SET p_oprice = ROUND(p_oprice / 10) * 10;
 
 SELECT * FROM tbl_product ;
+COMMIT ;
 
 
 
