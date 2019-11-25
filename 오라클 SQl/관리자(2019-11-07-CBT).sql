@@ -1,0 +1,9 @@
+CREATE TABLESPACE cbt_DB
+DATAFILE '/bizwork/oracle/data/cbt.dbf'
+SIZE 10M AUTOEXTEND ON NEXT 1K;
+
+CREATE USER cbt IDENTIFIED BY cbt
+DEFAULT TABLESPACE cbt_db ;
+
+GRANT DBA to cbt ;
+
