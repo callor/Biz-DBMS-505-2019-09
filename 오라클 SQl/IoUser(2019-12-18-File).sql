@@ -67,7 +67,9 @@ WHERE p_code = file_p_code ;
 DELETE FROM TBL_FILES;
 COMMIT;
 
-
+select *
+FROM tbl_files 
+ORDER BY file_p_code ;
 
 
 
