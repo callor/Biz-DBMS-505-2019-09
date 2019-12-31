@@ -21,6 +21,7 @@ START WITH 1 INCREMENT BY 1;
 
 INSERT INTO tbl_todolist(td_seq, td_date, td_time,td_subject)
 VALUES(0,'2019-12-31','10:00:00','망년회');
+COMMIT;
 
 SELECT * FROM tbl_todolist;
 
