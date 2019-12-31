@@ -1,0 +1,11 @@
+-- 관리자화면
+DROP USER iouser CASCADE ;
+
+CREATE TABLESPACE iouserTS
+DATAFILE 'C:/bizwork/oracle/data/iouser.dbf'
+SIZE 100M AUTOEXTEND ON NEXT 100K;
+
+CREATE USER iouser IDENTIFIED BY iouser
+DEFAULT TABLESPACE iouserTS;
+
+GRANT DBA TO iouser ;
