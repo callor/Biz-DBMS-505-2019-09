@@ -13,4 +13,27 @@ create user 'iouser'@'192.168.%' identified by '1234';
 grant all privileges on *.* TO 'iouser'@'192.168.%' ;
 
 
+-- 2020-01-21
+-- 새로운 사용자 등록하고 원한 부여
+create user 'ems'@'localhost' identified by 'ems';
+grant all privileges on *.* TO 'ems'@'localhost' ;
+
+-- ems는 모든 곳에서 원격, 로컬로 접속할수 있다.
+create user 'ems'@'%' identified by 'ems';
+grant all privileges on *.* TO 'ems'@'%' ;
+
+-- schema DB 생성
+CREATE DATABASE emsDB;
+USE emsDB;
+SHOW TABLES;
+DESC tbl_ems ;
+SELECT * FROM tbl_ems ;
+
+
+
+
+
+
+
+
 
