@@ -68,7 +68,7 @@ SET menu_p_id = NULL
 WHERE menu_id IN ('M01','M02');
 
 
-
+SELECT * FROM tbl_bbs ;
 
 
 
