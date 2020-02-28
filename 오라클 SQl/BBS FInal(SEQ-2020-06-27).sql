@@ -28,14 +28,23 @@ ALTER TABLE tbl_bbs RENAME COLUMN b_content_b TO b_content;
 
 SELECT * FROM tbl_bbs;
 
+DROP TABLE tbl_comment;
 CREATE TABLE tbl_comment (
     c_id	NUMBER		PRIMARY KEY,
-    c_p_id	NUMBER	NOT NULL,	
+    
+    c_b_id	NUMBER	NOT NULL,	-- 게시판과 연동 칼럼
+    c_p_id	NUMBER,	            -- 댓글에 댓글 달기 위한 칼럼
+    
     c_date_time	VARCHAR2(30)	NOT NULL,
     c_writer	nVARCHAR2(30)	NOT NULL,	
     c_subject	nVARCHAR2(125)	NOT NULL	
 );
 
+CREATE SEQUENCE SEQ_CMT
+START WITH 1 INCREMENT BY 1;
 
+
+SELECT * FROM tbl_comment ;
+COMMIT;
 
 
