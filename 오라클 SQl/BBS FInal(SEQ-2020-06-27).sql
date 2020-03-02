@@ -48,3 +48,9 @@ SELECT * FROM tbl_comment ;
 COMMIT;
 
 
+SELECT * FROM tbl_bbs ;
+SELECT SEQ_BBS.NEXTVAL FROM DUAL;
+
+DELETE FROM tbl_bbs ;
+
+
