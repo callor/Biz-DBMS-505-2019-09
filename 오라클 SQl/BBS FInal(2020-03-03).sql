@@ -82,6 +82,54 @@ START WITH b_p_id  = 0
 CONNECT BY PRIOR b_id = b_p_id 
 ORDER SIBLINGS BY b_p_id ;
 
+SELECT c_id,c_p_id,c_b_id, c_writer,
+LPAD('re:', (LEVEL-1)*5) || c_subject AS c_subject
+FROM tbl_comment
+WHERE c_b_id = #{c_b_id}
+START WITH c_p_id  = 0
+CONNECT BY PRIOR c_id = c_p_id 
+ORDER SIBLINGS BY c_p_id ;
+
+/*
+connect by level < 값
+1 부터 값-1까지 리스트를 만들어라
+*/
+
+-- 각 리스트의 요소가 1인 리스트를 9개 만들어라
+SELECT 1 FROM DUAL
+CONNECT BY LEVEL < 10;
+
+-- 1부터 10까지 10개의 리스트를 만들어라
+SELECT LEVEL FROM DUAL
+CONNECT BY LEVEL <= 10;
+
+-- 0부터 9까지 10개의 리스트를 만들어라
+SELECT (LEVEL-1) FROM DUAL
+CONNECT BY LEVEL <= 10;
+
+-- 9가 포함된 3자릿수의 문자열을 만들고
+-- 왼쪽에 빈칸이 있으면 A 문자열로 채워라
+SELECT LPAD(9,3,'A') FROM DUAL;
+
+SELECT LPAD('re:',0) FROM DUAL;
+SELECT LPAD('re:',3) FROM DUAL;
+SELECT LPAD('re:',5) FROM DUAL;
+
+-- 전체자릿수를 9개로 만들고
+-- 이미 주어진 앞쪽의 re:문자열을 표시하고
+-- 빈칸으로 남겨진 앞쪽의 6개의 여백에 re: 문자열을 반복적으로 표시하라
+SELECT LPAD('re:',3*3,'re:') FROM DUAL;
+
+-- 1 부터 10까지 10개의 리스트를 만들고
+-- LEVEL 값에 3을 곱한 문자열을 생성한 후
+-- re: 문자가 포함된 리스트를 만들어라
+SELECT LPAD('re:',LEVEL * 3, 're:') 
+FROM DUAL
+CONNECT BY LEVEL <= 10;
+
+SELECT LPAD('re:',(LEVEL-1) * 3, 're:') || '제목'
+FROM DUAL
+CONNECT BY LEVEL <= 10;
 
 
 
