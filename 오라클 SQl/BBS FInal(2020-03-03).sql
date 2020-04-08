@@ -131,5 +131,22 @@ SELECT LPAD('re:',(LEVEL-1) * 3, 're:') || '제목'
 FROM DUAL
 CONNECT BY LEVEL <= 10;
 
+SELECT * FROM tbl_bbs WHERE b_p_id = 0 ;
+
+SELECT c_id,c_p_id,c_b_id,c_date_time, c_writer,
+LPAD('re:', (LEVEL-1)*5) || c_subject AS c_subject
+FROM tbl_comment
+START WITH c_p_id  = 0
+CONNECT BY PRIOR c_id = c_p_id
+ORDER SIBLINGS BY c_id DESC,c_date_time ASC;
+
+
+SELECT b_id,b_p_id, b_date_time,
+LPAD('re:', (LEVEL-1)*5) || b_subject AS 제목
+FROM tbl_bbs
+START WITH b_p_id  = 0
+CONNECT BY PRIOR b_id = b_p_id 
+ORDER SIBLINGS BY b_p_id ;
+
 
 
