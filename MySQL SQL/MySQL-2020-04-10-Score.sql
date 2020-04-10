@@ -75,7 +75,7 @@ INSERT INTO tbl_score(s_num,s_subject,s_score) VALUES('20005','과학',77);
 INSERT INTO tbl_score(s_num,s_subject,s_score) VALUES('20005','국사',77);
 
 
-SELECT s_num,
+SELECT s_num,st_name,
 	SUM(CASE WHEN s_subject ='국어' 
 		THEN s_score ELSE 0 END) AS 국어,
 	SUM(CASE WHEN s_subject ='영어' 
@@ -87,6 +87,8 @@ SELECT s_num,
 	SUM(CASE WHEN s_subject ='국사' 
 		THEN s_score ELSE 0 END) AS 국사
 FROM tbl_score
+	LEFT JOIN tbl_student 
+		ON tbl_student.st_num = tbl_score.s_num
 GROUP BY s_num ;
 
 SELECT * FROM TBL_SCORE;
