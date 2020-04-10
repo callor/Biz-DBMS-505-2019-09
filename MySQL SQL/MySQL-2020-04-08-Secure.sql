@@ -21,20 +21,28 @@ CREATE TABLE users (
     enabled boolean
 );
 
+-- 2020-04-10 변경
+-- tbl_users 테이블 변경
+-- user_name 칼럼 UNIQUE로 변경
 drop table tbl_users;
 CREATE TABLE tbl_users (
 	id bigint  PRIMARY KEY AUTO_INCREMENT,
-	user_name varchar(50),
+	user_name varchar(50) UNIQUE,
 	user_pass varchar(125),
     enabled boolean
 );
 
+-- 로그인한 User의 권한들을 보관할 TABLE
+DROP TABLE authorities;
 CREATE TABLE authorities (
 	id bigint PRIMARY KEY AUTO_INCREMENT,
     username varchar(50),
     authority varchar(50)
 );
 
+SELECT * FROM tbl_users;
+commit ;
+delete from tbl_users where id = 1;
 
 
 
