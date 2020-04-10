@@ -79,21 +79,13 @@ SELECT s_num,
 	SUM(CASE WHEN s_subject ='국어' 
 		THEN s_score ELSE 0 END) AS 국어,
 	SUM(CASE WHEN s_subject ='영어' 
-		THEN s_score 
-        ELSE 0 
-        END) AS 영어,
+		THEN s_score ELSE 0 END) AS 영어,
 	SUM(CASE WHEN s_subject ='수학' 
-		THEN s_score 
-        ELSE 0 
-        END) AS 수학,
+		THEN s_score ELSE 0 END) AS 수학,
 	SUM(CASE WHEN s_subject ='과학' 
-		THEN s_score 
-        ELSE 0 
-        END) AS 과학,
+		THEN s_score ELSE 0 END) AS 과학,
 	SUM(CASE WHEN s_subject ='국사' 
-		THEN s_score 
-        ELSE 0 
-        END) AS 국사
+		THEN s_score ELSE 0 END) AS 국사
 FROM tbl_score
 GROUP BY s_num ;
 
