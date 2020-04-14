@@ -45,10 +45,42 @@ commit ;
 delete from tbl_users where id = 1;
 
 
+USE secur;
+DROP table tbl_users;
+DROP table authorities;
+
+DELETE FROM tbl_users WHERE user_name='admin';
+
+INSERT INTO tbl_users 
+(user_name,user_pass,enabled,email,phone,address)
+VALUES('admin','admin',true,
+		'callor@callor.com','010-111-1234','광주광역시');
+SELECT * FROM tbl_users;
+
+INSERT INTO authorities(username,authority)
+VALUES('admin','ADMIN');
+INSERT INTO authorities(username,authority)
+VALUES('admin','ROLE_ADMIN');
 
 
+INSERT INTO tbl_users 
+(user_name,user_pass,enabled,email,phone,address)
+VALUES('user','user',true,
+		'user@callor.com','010-222-1234','광주광역시');
+SELECT * FROM tbl_users;
 
+INSERT INTO authorities(username,authority)
+VALUES('user','USER');
+INSERT INTO authorities(username,authority)
+VALUES('user','ROLE_USER');
 
+SELECT * FROM authorities;
+
+commit ;
+
+delete from tbl_users WHERE user_name ='user';
+
+SELECT * FROM tbl_users WHERE id=4;
 
 
 
