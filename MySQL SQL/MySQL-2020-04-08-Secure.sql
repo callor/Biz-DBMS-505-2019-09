@@ -74,13 +74,37 @@ VALUES('user','USER');
 INSERT INTO authorities(username,authority)
 VALUES('user','ROLE_USER');
 
+SELECT * FROM tbl_users;
 SELECT * FROM authorities;
+DELETE FROM authorities WHERE username = 'admin';
 
 commit ;
 
 delete from tbl_users WHERE user_name ='user';
+use secur;
+SELECT * FROM tbl_users;
 
-SELECT * FROM tbl_users WHERE id=4;
+DELETE FROM authorities WHERE username = 'admin';
+
+use secur;
+INSERT INTO authorities (username,authority)
+VALUES('admin','ROLE_ADMIN');
+COMMIT;
+
+update tbl_users set enabled = true where id=4;
+
+
+-- 2020-04-20
+USE SECUR;
+SELECT * FROM tbl_users;
+SELECT * FROM authorities;
+DELETE FROM tbl_users WHERE user_name = 'callor88';
+
+UPDATE tbl_users SET enabled=true WHERE user_name = 'callor';
+
+
+
+
 
 
 
